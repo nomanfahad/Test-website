@@ -28,7 +28,7 @@
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Registered Admin</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
                       <?php
-                      require'dbconfig.php';
+                      
                       $query = "SELECT id FROM register ORDER BY id";
                       $query_run = mysqli_query($connection, $query);
 

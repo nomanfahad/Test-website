@@ -1,5 +1,6 @@
 <?php
-session_start();
+
+include('security.php');
 include('includes/header.php');
 include('includes/navbar.php');
 ?>
@@ -78,7 +79,7 @@ include('includes/navbar.php');
     <div class="table-responsive">
 
     <?php
-       $connection = mysqli_connect("localhost","root","","adminpanel");
+      
 
        $query = "SELECT *FROM register";
        $query_run = mysqli_query($connection,$query);
