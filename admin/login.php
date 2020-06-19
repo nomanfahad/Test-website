@@ -27,7 +27,7 @@ session_start();
                 ?>
               </div>
 
-              <form class="user" action ="code.php" method = "POST">
+              <form class="user" action ="logincode.php" method = "POST">
                 <div class="form-group">
                 <input type="email" name="email" class="form-control form-control-user" placeholder="Enter Email Address...">
                 </div>

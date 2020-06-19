@@ -10,10 +10,11 @@ if(isset($_POST['registerbtn']))
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cpassword = $_POST['confirmpassword'];
+    $usertype = $_POST['usertype'];
 
 if($password === $cpassword)
    {
-    $query = "INSERT INTO register (username,email,password) VALUES ('$username','$email','$password')";
+    $query = "INSERT INTO register (username,email,password,usertype) VALUES ('$username','$email','$password','$usertype')";
     $query_run = mysqli_query($connection, $query);
             
      if($query_run)
@@ -42,8 +43,9 @@ if(isset($_POST['updatebtn']))
     $username= $_POST['edit_username'];
     $email= $_POST['edit_email'];
     $password= $_POST['edit_password'];
+    $usertypeupdate= $_POST['update_usertype'];
 
-    $query = "UPDATE register SET username='$username', email='$email', password='$password' WHERE id='$id'";
+    $query = "UPDATE register SET username='$username', email='$email', password='$password', usertype='$usertypeupdate' WHERE id='$id'";
     $query_run = mysqli_query($connection, $query);
 
     if($query_run)
@@ -84,25 +86,6 @@ if(isset($_POST['delete_btn']))
 
 
 
-if(isset($_POST['login_btn']))
-{
-    $email_login = $_POST['email'];
-    $password_login = $_POST['password'];
-
-    $query = "SELECT *FROM register WHERE email='$email_login' AND password='$password_login' ";
-    $query_run = mysqli_query($connection, $query);
-
-    if(mysqli_fetch_array($query_run))
-    {
-       $_SESSION['username'] =  $email_login;
-       header('Location: index.php');
-    }
-    else
-    {
-        $_SESSION['status'] = 'Email id / Password in Incorrect';
-        header('Location: login.php');
-    }
-}
 
 
 
