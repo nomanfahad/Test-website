@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+include('security.php');
 $connection = mysqli_connect("localhost","root","","adminpanel");
 
 
@@ -82,7 +82,7 @@ if(isset($_POST['delete_btn']))
 }
 
 
-include('security.php');
+
 
 if(isset($_POST['login_btn']))
 {
@@ -103,6 +103,7 @@ if(isset($_POST['login_btn']))
         header('Location: login.php');
     }
 }
+
 
 
 
