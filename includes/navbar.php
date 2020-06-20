@@ -1,5 +1,5 @@
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark primary-color">
 
   <!-- Navbar brand -->
   <a class="navbar-brand" href="#">My college website</a>

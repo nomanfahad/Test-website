@@ -4,7 +4,7 @@ include('includes/header.php');
 include('includes/navbar.php');
 ?>
 
-
+<div class="container-fluid">
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
