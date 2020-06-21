@@ -119,7 +119,7 @@ if(isset($_POST['update_btn']))
     $id = $_POST['edit_id'];
     $title= $_POST['edit_title'];
     $subtitle= $_POST['edit_subtitle'];
-    $description= $description= mysqli_real_escape_string($connection, $_POST['edit_description']); 
+    $description= mysqli_real_escape_string($connection, $_POST['edit_description']); 
     $links= $_POST['edit_links'];
 
     $query = "UPDATE abouts SET title='$title', subtitle='$subtitle', description='$description', links='$links' WHERE id='$id'";
@@ -164,7 +164,7 @@ if(isset($_POST['save_faculty']))
 {
     $name= $_POST['faculty_name'];
     $designation= $_POST['faculty_designation'];
-    $description= $_POST['faculty_description'];
+    $description= mysqli_real_escape_string($connection, $_POST['faculty_description']); 
     $images= $_FILES["faculty_image"]['name'];
 
     if(file_exists("upload/" .$_FILES["faculty_image"]["name"]))
@@ -196,6 +196,91 @@ if(isset($_POST['save_faculty']))
 
 }
 
+
+
+if(isset($_POST['faculty_update_btn']))
+{
+    $edit_id= $_POST['edit_id'];
+    $edit_name= $_POST['edit_name'];
+    $edit_designation= $_POST['edit_designation'];
+    $edit_description= mysqli_real_escape_string($connection, $_POST['edit_description']); 
+
+    $edit_faculty_image= $_FILES["faculty_image"]['name'];
+
+    $facul_query = "SELECT * FROM faculty where id='$edit_id'";
+    $facul_query_run = mysqli_query($connection, $facul_query);
+
+    foreach($facul_query_run as $fa_row)
+    {
+       // echo $fa_row['images'];
+
+       if($edit_faculty_image == NULL)
+       {
+           //update with existing image
+           $image_data = $fa_row['images'];
+       }
+       else
+       {
+           //update with new image and delete with old image
+           if($img_path ="upload/".$fa_row['images'])
+           {
+               unlink($img_path);
+               $image_data = $edit_faculty_image;
+           }
+
+
+       }
+    }
+
+    $query = "UPDATE faculty SET name='$edit_name', designation='$edit_designation', description='$edit_description', images='$image_data' WHERE id='$edit_id'";
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        if($edit_faculty_image == NULL)
+        {
+            //update with existing image
+            $_SESSION['success'] = "Faculty updated with existing image";
+            header('Location: faculty.php');        }
+        else
+        {
+            //update with new image and delete with old image
+            move_uploaded_file($_FILES["faculty_image"]["tmp_name"],"upload/".$_FILES["faculty_image"]["name"]);
+            $_SESSION['success'] = "Faculty is updated";
+            header('Location: faculty.php');
+      
+ 
+        }
+
+    }
+    else
+    {
+        $_SESSION['status'] = "Faculty is not updated";
+        header('Location: faculty.php');
+
+    }
+}
+
+
+
+if(isset($_POST['faculty_delete_btn']))
+{
+    $id = $_POST['delete_id'];
+
+    $query = "DELETE FROM faculty WHERE id='$id' ";
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+       $_SESSION['success'] = "Faculty Data is Deleted";
+       header('Location:faculty.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Faculty Data is Not Deleted";
+        header('Location:faculty.php');
+    }
+}
 
 
 
