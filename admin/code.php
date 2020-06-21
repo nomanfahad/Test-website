@@ -167,31 +167,45 @@ if(isset($_POST['save_faculty']))
     $description= mysqli_real_escape_string($connection, $_POST['faculty_description']); 
     $images= $_FILES["faculty_image"]['name'];
 
-    if(file_exists("upload/" .$_FILES["faculty_image"]["name"]))
+    $validate_img_extension = $_FILES["faculty_image"]['type']=="image/jpg" || 
+    $_FILES["faculty_image"]['type']=="image/png" ||
+    $_FILES["faculty_image"]['type']=="image/jpeg" 
+    ;
+
+    if($validate_img_extension)
     {
-        $store =$_FILES["faculty_image"]["name"];
-        $_SESSION['status'] = "Image already exists, '.$store'";
-        header('Location: faculty.php'); 
-    }
-    else
-    {
-        $query = "INSERT INTO faculty (name,designation,description,images) VALUES ('$name','$designation','$description','$images')";
-        $query_run = mysqli_query($connection, $query);
-    
-    if($query_run)
-    {
-        move_uploaded_file($_FILES["faculty_image"]["tmp_name"],"upload/".$_FILES["faculty_image"]["name"]);
-        $_SESSION['success'] = "Faculty Added";
-        header("Location: faculty.php");
-    }
-    else
-    {
-        $_SESSION['status'] = "Faculty is Not Added";
-        header("Location: faculty.php");
+
+        if(file_exists("upload/" .$_FILES["faculty_image"]["name"]))
+         {
+             $store =$_FILES["faculty_image"]["name"];
+             $_SESSION['status'] = "Image already exists, '.$store'";
+             header('Location: faculty.php'); 
+         }
+        else
+         {
+              $query = "INSERT INTO faculty (name,designation,description,images) VALUES ('$name','$designation','$description','$images')";
+              $query_run = mysqli_query($connection, $query);
+         }
+        if($query_run)
+         {
+              move_uploaded_file($_FILES["faculty_image"]["tmp_name"],"upload/".$_FILES["faculty_image"]["name"]);
+              $_SESSION['success'] = "Faculty Added";
+              header("Location: faculty.php");
+         }
+        else
+         {
+              $_SESSION['status'] = "Faculty is Not Added";
+              header("Location: faculty.php");
+
+         }
 
     }
+         else
+         {
+              $_SESSION['status'] = "Only JPG, JPEG, PNG images are allowed";
+              header("Location: faculty.php");
 
-    }
+         }
 
 
 }
@@ -206,6 +220,15 @@ if(isset($_POST['faculty_update_btn']))
     $edit_description= mysqli_real_escape_string($connection, $_POST['edit_description']); 
 
     $edit_faculty_image= $_FILES["faculty_image"]['name'];
+
+    $validate_img_extension = $_FILES["faculty_image"]['type']=="image/jpg" || 
+    $_FILES["faculty_image"]['type']=="image/png" ||
+    $_FILES["faculty_image"]['type']=="image/jpeg" 
+    ;
+
+    if($validate_img_extension)
+    {
+
 
     $facul_query = "SELECT * FROM faculty where id='$edit_id'";
     $facul_query_run = mysqli_query($connection, $facul_query);
@@ -259,6 +282,14 @@ if(isset($_POST['faculty_update_btn']))
         header('Location: faculty.php');
 
     }
+
+}
+else
+{
+     $_SESSION['status'] = "Only JPG, JPEG, PNG images are allowed, Try updating with valid extension";
+     header("Location: faculty.php");
+
+}
 }
 
 
