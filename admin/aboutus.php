@@ -109,6 +109,7 @@ include('includes/navbar.php');
           while($row = mysqli_fetch_assoc($query_run))
           {
         ?>
+        
          
           <tr>
             <td> <?php echo $row['id']; ?> </td>
