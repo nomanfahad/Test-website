@@ -40,6 +40,11 @@
             <h6 class="collapse-header">Custom Components:</h6>
             <a class="collapse-item" href="aboutus.php">About Us</a>
             <a class="collapse-item" href="faculty.php">Faculties</a>
+            <a class="collapse-item" href="subject.php">Subject</a>
+            <a class="collapse-item" href="teacher.php">Teacher Assign</a>
+            <a class="collapse-item" href="time.php">TIme Slot</a>
+            <a class="collapse-item" href="routine.php">Routine</a>
+
           </div>
         </div>
       </li>

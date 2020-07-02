@@ -34,6 +34,7 @@
         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="department.php">Department</a>
           <a class="dropdown-item" href="register.php">Register</a>
+          <a class="dropdown-item" href="routine.php">Routine</a>
           <a class="dropdown-item" href="contacts.php">Contacts</a>
         </div>
       </li>

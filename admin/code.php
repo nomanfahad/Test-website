@@ -316,4 +316,106 @@ if(isset($_POST['faculty_delete_btn']))
 
 
 
+
+
+
+if(isset($_POST['save_routine']))
+{
+    $name= $_POST['Teacher_name'];
+    $day= $_POST['Day'];
+    $period= $_POST['Period'];
+    $subject= $_POST['Subject']; 
+    $class= $_POST['Class']; 
+
+    $query = "INSERT INTO routine (name,day,period,subject,class) VALUES ('$name','$day','$period','$subject','$class')";
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+         {
+              $_SESSION['success'] = "Routine Added";
+              header("Location: routine.php");
+         }
+    else
+         {
+              $_SESSION['status'] = "Routine is Not Added";
+              header("Location: routine.php");
+
+         }
+
+}
+
+
+if(isset($_POST['save_subject']))
+{
+    $name= $_POST['name']; 
+    $code= $_POST['code']; 
+
+    $query = "INSERT INTO subject (name,code) VALUES ('$name', '$code')";
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+         {
+              $_SESSION['success'] = "Subject Added";
+              header("Location: subject.php");
+         }
+    else
+         {
+              $_SESSION['status'] = "Subject is Not Added";
+              header("Location: subject.php");
+
+         }
+
+}
+
+
+if(isset($_POST['save_teacher']))
+{
+    $class= $_POST['class']; 
+    $name= $_POST['name']; 
+
+
+    $query = "INSERT INTO teacher_assigns (class,name) VALUES ('$class', '$name')";
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+         {
+              $_SESSION['success'] = "Teacher is assigned";
+              header("Location: teacher.php");
+         }
+    else
+         {
+              $_SESSION['status'] = "Teacher is not assigned";
+              header("Location: teacher.php");
+
+         }
+
+}
+
+
+if(isset($_POST['save_time']))
+{
+    $start= $_POST['start']; 
+    $end= $_POST['end'];
+    $break= $_POST['break']; 
+
+
+    $query = "INSERT INTO time_slots (start,end,break) VALUES ('$start', '$end', '$break')";
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+         {
+              $_SESSION['success'] = "Time Slot is allocated";
+              header("Location: time.php");
+         }
+    else
+         {
+              $_SESSION['status'] = "Time Slot is not allocated";
+              header("Location: time.php");
+
+         }
+
+}
+
+
+
 ?>
