@@ -348,7 +348,8 @@ if(isset($_POST['save_routine']))
 if(isset($_POST['save_subject']))
 {
     $name= $_POST['name']; 
-    $code= $_POST['code']; 
+    $code= $_POST['code'];
+
 
     $query = "INSERT INTO subject (name,code) VALUES ('$name', '$code')";
     $query_run = mysqli_query($connection, $query);
@@ -372,9 +373,11 @@ if(isset($_POST['save_teacher']))
 {
     $class= $_POST['class']; 
     $name= $_POST['name']; 
+    $subject_id= $_POST['subject_id']; 
+    $teacher_id= $_POST['teacher_id']; 
 
 
-    $query = "INSERT INTO teacher_assigns (class,name) VALUES ('$class', '$name')";
+    $query = "INSERT INTO teacher_assigns (name,class,subject_id,teacher_id) VALUES ('$name', '$class', '$subject_id', '$teacher_id')";
     $query_run = mysqli_query($connection, $query);
 
     if($query_run)

@@ -29,6 +29,16 @@
                  <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
              </div>
 
+             <div class="form-group">
+                 <label> Subject_ID </label>
+                 <input type="text" name="subject_id" class="form-control" placeholder="Enter Subject ID" required>
+             </div>
+
+             <div class="form-group">
+                 <label> Teacher_ID </label>
+                 <input type="text" name="teacher_id" class="form-control" placeholder="Enter Teacher ID" required>
+             </div>
+
          </div>
 
          <div class="modal-footer">
@@ -46,7 +56,7 @@
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
    <div class="card-header py-3">
-     <h6 class="m-0 font-weight-bold text-primary"> Subject
+     <h6 class="m-0 font-weight-bold text-primary"> Teacher
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#facultymodal">
             ADD
         </button>
@@ -83,6 +93,8 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             <th> ID </th>
             <th>Name</th>
             <th> Class </th>
+            <th>Subject_ID</th>
+            <th>Teacher_ID</th>
 
           </tr>
         </thead>
@@ -98,6 +110,8 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             <td> <?php echo $row['id']; ?> </td>
             <td> <?php echo $row['name']; ?> </td>
             <td> <?php echo $row['class']; ?> </td>
+            <td> <?php echo $row['subject_id']; ?> </td>
+            <td> <?php echo $row['teacher_id']; ?> </td>
           </tr>
           <?php 
           }
